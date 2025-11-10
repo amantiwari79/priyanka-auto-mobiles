@@ -382,15 +382,29 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    function handleSubmit() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const service = document.getElementById('service').value;
-      const message = document.getElementById('message').value;
-      
-      const mailtoLink = `mailto:kumar4workk@gmail.com?subject=Inquiry from ${name}&body=Name: ${name}%0APhone: ${phone}%0AService: ${service}%0A%0AMessage:%0A${message}`;
-      window.location.href = mailtoLink;
-    }
+  function handleSubmit() {
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value;
+  
+  // Format the WhatsApp message
+  const whatsappMessage = `*New Inquiry*%0A%0A` +
+                         `*Name:* ${encodeURIComponent(name)}%0A` +
+                         `*Phone:* ${encodeURIComponent(phone)}%0A` +
+                         `*Service:* ${encodeURIComponent(service)}%0A%0A` +
+                         `*Message:*%0A${encodeURIComponent(message)}`;
+  
+  // Your WhatsApp number (include country code without + or 00)
+  const whatsappNumber = '+917491012079'; // Replace with your actual number
+  
+  // Create WhatsApp link
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  
+  // Open WhatsApp in new tab
+  window.open(whatsappLink, '_blank');
+}
   </script>
+  <script src="script.js"> </script>
 </body>
 </html>
